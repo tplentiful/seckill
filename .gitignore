@@ -1,0 +1,4 @@
+# Project exclude paths
+/commodity/target/
+/common/target/
+/integrate/target/
