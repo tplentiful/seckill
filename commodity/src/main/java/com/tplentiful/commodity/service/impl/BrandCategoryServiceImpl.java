@@ -1,8 +1,8 @@
 package com.tplentiful.commodity.service.impl;
 
-import com.tplentiful.com.pojo.po.BrandCategory;
-import com.tplentiful.com.dao.BrandCategoryDao;
-import com.tplentiful.com.service.BrandCategoryService;
+import com.tplentiful.commodity.pojo.po.BrandCategory;
+import com.tplentiful.commodity.dao.BrandCategoryDao;
+import com.tplentiful.commodity.service.BrandCategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

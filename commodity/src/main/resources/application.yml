@@ -5,9 +5,16 @@ spring:
     name: commodity
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.5.129:3306/com
+    url: jdbc:mysql://192.168.5.129:3306/t_commodity
     username: seckill
     password: U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m
+  cloud:
+    nacos:
+      discovery:
+        namespace: seckill
+        group: dev
+        server-addr: ${spring.cloud.nacos.server-addr}
+
 swagger:
   enable: true
   application-version: 1.0.0

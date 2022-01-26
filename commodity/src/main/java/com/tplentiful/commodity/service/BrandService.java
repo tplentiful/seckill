@@ -1,6 +1,6 @@
 package com.tplentiful.commodity.service;
 
-import com.tplentiful.com.pojo.po.Brand;
+import com.tplentiful.commodity.pojo.po.Brand;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

@@ -6,5 +6,5 @@ package com.tplentiful.common.constant;
  **/
 public class RedisConstant {
 
-    public static final String RESOURCE_KEY = "resource:";
+    public static final String RESOURCE_TOKEN = "resource:token";
 }

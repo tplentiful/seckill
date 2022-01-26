@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-01-21
  */
 @RestController
-@RequestMapping("/com/spu")
+@RequestMapping("/spu")
 public class SpuController {
 
 }

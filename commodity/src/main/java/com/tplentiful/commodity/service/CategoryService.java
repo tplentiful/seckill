@@ -1,7 +1,10 @@
 package com.tplentiful.commodity.service;
 
-import com.tplentiful.com.pojo.po.Category;
+import com.tplentiful.commodity.pojo.dto.CategoryDto;
+import com.tplentiful.commodity.pojo.po.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-01-21
  */
 public interface CategoryService extends IService<Category> {
+
+    Map<Long, CategoryDto> getCategoryList();
 
 }

@@ -2,6 +2,7 @@ package com.tplentiful.integrate.dao;
 
 import com.tplentiful.integrate.pojo.po.Resource;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author tplentiful
  * @since 2022-01-21
  */
+@Mapper
 public interface ResourceDao extends BaseMapper<Resource> {
 
 }

@@ -3,10 +3,20 @@ package com.tplentiful.commodity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.tplentiful.commodity.pojo.dto.CategoryDto;
+import com.tplentiful.commodity.pojo.po.Category;
+import com.tplentiful.commodity.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: tplentiful
@@ -14,7 +24,11 @@ import java.util.Collections;
  **/
 
 @SpringBootTest
+@Slf4j
 public class CommodityApplicationTest {
+    @Autowired
+    private CategoryService categoryService;
+
     @Test
     void testGenerateCode() {
         String database = "com";
@@ -41,4 +55,38 @@ public class CommodityApplicationTest {
                 })
                 .execute();
     }
+
+    @Test
+    public void testCategoryService() {
+        Map<Long, CategoryDto> res = new HashMap<>();
+        Map<Long, List<CategoryDto>> secondMap = new HashMap<>();
+        Map<Long, CategoryDto> tempSecondMap = new HashMap<>();
+        List<Category> allData = categoryService.list();
+        Long parentId;
+        for (Category allDatum : allData) {
+            parentId = allDatum.getParentId();
+            if (parentId.equals(0L)) {
+                res.put(allDatum.getId(), CategoryDto.builder().id(allDatum.getId()).cname(allDatum.getCname()).children(new ArrayList<>()).build());
+            } else if (allDatum.getGrade().equals(2)) {
+                List<CategoryDto> tempList = secondMap.getOrDefault(parentId, new ArrayList<>());
+                CategoryDto categoryDto = CategoryDto.builder().id(allDatum.getId()).cname(allDatum.getCname()).children(new ArrayList<>()).build();
+                tempList.add(categoryDto);
+                secondMap.put(parentId, tempList);
+                tempSecondMap.put(categoryDto.getId(), categoryDto);
+            }
+        }
+        for (Category allDatum : allData) {
+            if (allDatum.getGrade().equals(3)) {
+                parentId = allDatum.getParentId();
+                List<CategoryDto> children = tempSecondMap.get(parentId).getChildren();
+                children.add(CategoryDto.builder().id(allDatum.getId()).cname(allDatum.getCname()).children(new ArrayList<>()).build());
+            }
+        }
+        for (Long key : res.keySet()) {
+            CategoryDto categoryDto = res.get(key);
+            categoryDto.setChildren( secondMap.get(key));
+        }
+
+    }
 }
+

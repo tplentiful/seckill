@@ -27,7 +27,7 @@ class IntegrateApplicationTests {
 
     @Test
     void testGenerateCode() {
-        String database = "integrate";
+        String database = "t_integrate";
         FastAutoGenerator.create("jdbc:mysql://192.168.5.129:3306/" + database, "seckill", "U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m")
                 .globalConfig(builder -> {
                     builder.author("tplentiful") // 设置作者
@@ -53,6 +53,6 @@ class IntegrateApplicationTests {
     }
 
     @Test
-    public void testRsa() {
+    public void testUpload() {
     }
 }

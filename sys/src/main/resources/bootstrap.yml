@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: sys
+  cloud:
+    nacos:
+      server-addr: 47.96.5.71:8488
+      config:
+        namespace: seckill
+        group: dev
+        extension-configs:
+          - dataId: ${spring.application.name}.yml
+            group: dev
+            refresh: true
+

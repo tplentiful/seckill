@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +18,7 @@ import lombok.Setter;
  * @author tplentiful
  * @since 2022-01-21
  */
-@Getter
-@Setter
+@Data
 @TableName("brand_category")
 @ApiModel(value = "BrandCategory对象", description = "")
 public class BrandCategory implements Serializable {

@@ -1,7 +1,8 @@
 package com.tplentiful.commodity.dao;
 
-import com.tplentiful.com.pojo.po.BrandCategory;
+import com.tplentiful.commodity.pojo.po.BrandCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author tplentiful
  * @since 2022-01-21
  */
+@Mapper
 public interface BrandCategoryDao extends BaseMapper<BrandCategory> {
 
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,8 +19,7 @@ import lombok.Setter;
  * @author tplentiful
  * @since 2022-01-21
  */
-@Getter
-@Setter
+@Data
 @ApiModel(value = "Spec对象", description = "规格参数表 spu 属性")
 public class Spec implements Serializable {
 

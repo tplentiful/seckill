@@ -18,10 +18,17 @@
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <httpclient.version>4.5.13</httpclient.version>
         <selenium.version>3.141.59</selenium.version>
+        <commons-net.version>3.8.0</commons-net.version>
     </properties>
 
     <dependencies>
-<!--        redis-->
+        <!--        ftp-->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${commons-net.version}</version>
+        </dependency>
+        <!--        redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>

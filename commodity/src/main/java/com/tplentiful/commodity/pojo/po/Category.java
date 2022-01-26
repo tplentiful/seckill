@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +17,7 @@ import lombok.Setter;
  * @author tplentiful
  * @since 2022-01-21
  */
-@Getter
-@Setter
+@Data
 @ApiModel(value = "Category对象", description = "")
 public class Category implements Serializable {
 
@@ -27,7 +27,7 @@ public class Category implements Serializable {
     private Long id;
 
     @ApiModelProperty("分类名称")
-    private String cName;
+    private String cname;
 
     @ApiModelProperty("父级 id")
     private Long parentId;

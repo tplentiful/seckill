@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +18,7 @@ import lombok.Setter;
  * @author tplentiful
  * @since 2022-01-21
  */
-@Getter
-@Setter
+@Data
 @ApiModel(value = "Spu对象", description = "spu 表")
 public class Spu implements Serializable {
 

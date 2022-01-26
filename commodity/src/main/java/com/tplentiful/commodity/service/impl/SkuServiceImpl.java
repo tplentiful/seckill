@@ -1,8 +1,8 @@
 package com.tplentiful.commodity.service.impl;
 
-import com.tplentiful.com.pojo.po.Sku;
-import com.tplentiful.com.dao.SkuDao;
-import com.tplentiful.com.service.SkuService;
+import com.tplentiful.commodity.pojo.po.Sku;
+import com.tplentiful.commodity.dao.SkuDao;
+import com.tplentiful.commodity.service.SkuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

@@ -39,7 +39,7 @@ public class TR<T> {
     }
 
     public static TR<Void> fail(String msg) {
-        return new TR<>(OK, msg, null);
+        return new TR<>(FAIL, msg, null);
     }
 
     /**

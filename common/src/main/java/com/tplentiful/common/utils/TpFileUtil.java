@@ -2,6 +2,7 @@ package com.tplentiful.common.utils;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -23,10 +25,11 @@ import java.util.zip.ZipOutputStream;
  * @Since: 1.0
  **/
 @Slf4j
-public class DownloadUtil {
+public class TpFileUtil {
 
-    public static final String SEPARATOR = File.separator;
-    public static final String HOME_PATH = SEPARATOR + "data" + SEPARATOR + "resource" + SEPARATOR;
+    public static final String NEW_LINE = FileUtil.getLineSeparator();
+    public static final String DOMAIN = "https://tplentiful.bio/resource/";
+    public static final String HOME_PATH = "/data/resource/";
     public static final File HOME = new File(HOME_PATH);
 
     static {
@@ -56,13 +59,13 @@ public class DownloadUtil {
             imageStream.close();
         } catch (IOException e) {
             log.info("文件下载失败: {}", url, e);
-            throw new BizException("文件下载失败");
+            throw new com.tplentiful.common.utils.BizException("文件下载失败");
 
         }
 
     }
 
-    public static ResponseEntity<byte[]> downloadImages(String[] urls) {
+    public static ResponseEntity<byte[]> downloadImages(List<String> urls) {
         ZipOutputStream zipOutputStream;
         File zipFile;
         try {
@@ -96,7 +99,7 @@ public class DownloadUtil {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentDispositionFormData("attachment", zipFile.getName());
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(FileUtil.readBytes(zipFile), headers, HttpStatus.CREATED);
+        ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(cn.hutool.core.io.FileUtil.readBytes(zipFile), headers, HttpStatus.CREATED);
         if (zipFile.delete()) {
             log.info("资源释放完成");
         }
