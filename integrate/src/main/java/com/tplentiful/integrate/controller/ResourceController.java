@@ -32,12 +32,12 @@ public class ResourceController {
 
     @GetMapping("/list")
     public TR<IPage<Resource>> list(ResourceModel params) {
-        return TR.ok("成功", resourceService.selectPage(params));
+        return TR.ok("资源列表获取成功", resourceService.selectPage(params));
     }
 
     @PostMapping("/delete")
     public TR<Void> delete(@RequestBody Long[] ids) {
-        resourceService.removeBatchByIds(Arrays.asList(ids));
+        resourceService.deleteAndRelease(ids);
         return TR.ok("删除成功: " + Arrays.toString(ids));
     }
 
@@ -53,7 +53,7 @@ public class ResourceController {
 
     @PostMapping("/upload")
     public TR<UploadResourceDto> upload(UploadResourceModel model) {
-        return TR.ok("成功", resourceService.uploadResource(model));
+        return TR.ok("资源上传成功", resourceService.uploadResource(model));
     }
 
 

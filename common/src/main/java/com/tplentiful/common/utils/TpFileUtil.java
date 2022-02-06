@@ -2,7 +2,6 @@ package com.tplentiful.common.utils;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -77,9 +77,12 @@ public class TpFileUtil {
         for (String url : urls) {
             try {
                 URL requestUrl = new URL(url);
+                URLConnection urlConnection = requestUrl.openConnection();
+                String suffix = urlConnection.getHeaderField("x-oss-meta-file-type");
+                log.info("当前文件后缀为: {}", suffix);
                 String filename = IdUtil.simpleUUID();
                 DataInputStream imageStream = new DataInputStream(requestUrl.openStream());
-                zipOutputStream.putNextEntry(new ZipEntry(filename + ".png"));
+                zipOutputStream.putNextEntry(new ZipEntry(filename + "." + suffix));
                 byte[] buffer = new byte[1024];
                 int res;
                 while ((res = imageStream.read(buffer)) != -1) {
@@ -87,7 +90,7 @@ public class TpFileUtil {
                 }
                 imageStream.close();
             } catch (IOException e) {
-                log.info("文件下载失败: {}", url, e);
+                log.error("文件下载失败: {}", url, e);
                 throw new BizException("文件下载失败");
             }
         }

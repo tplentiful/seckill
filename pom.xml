@@ -12,6 +12,7 @@
         <module>common</module>
         <module>commodity</module>
         <module>integrate</module>
+        <module>sys</module>
     </modules>
 
     <properties>

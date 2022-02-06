@@ -15,3 +15,5 @@ public class CommodityApplication {
         SpringApplication.run(CommodityApplication.class, args);
     }
 }
+
+

@@ -5,9 +5,9 @@ spring:
     username: seckill
     password: U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m
   redis:
-    jedis:
+    lettuce:
       pool:
-        max-active: 30
+        max-active: 8
         max-wait: 30
         max-idle: 6
         min-idle: 0
@@ -23,6 +23,20 @@ spring:
         namespace: seckill
         group: dev
         server-addr: ${spring.cloud.nacos.server-addr}
+  mail:
+    host: smtp.qq.com
+    port: 465
+    protocol: smtps
+    username: tplentiful@foxmail.com
+    password: ojpcowwrkpdrbdhh
+    default-encoding: UTF-8
+    properties:
+      mail:
+        stmp:
+          ssl:
+            enable: true
+          socket-factory:
+            class: javax.net.ssl.SSLSocketFactory
 server:
   port: 30001
 okhttp:
@@ -47,3 +61,9 @@ mybatis-plus:
 source-rsa:
   pubKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrOVINKK+BpfUQuKcsSukyEKXNCJCUl39dRabeXMoGuvzyGwbs+pETP1tDPHM+XVMHg42le5DDsfqObHLXoWS4x5nSHZ0Jy/BGJrpkMD9CGWSx6q6JVkf9oAHFAuW2i/ZBxTYeh7+R0dk5nRHtX99tzmX/gMz5miPziabFSjkqewIDAQAB
   priKey: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKs5Ug0or4Gl9RC4pyxK6TIQpc0IkJSXf11Fpt5cyga6/PIbBuz6kRM/W0M8cz5dUweDjaV7kMOx+o5sctehZLjHmdIdnQnL8EYmumQwP0IZZLHqrolWR/2gAcUC5baL9kHFNh6Hv5HR2TmdEe1f323OZf+AzPmaI/OJpsVKOSp7AgMBAAECgYB+8e+IfAqrN6ya6hxfdWaxTLBwdBIlaLDwKSzPncHW/Zl9slYPKrKWr5ltHwteSHi/kGRbNWKeBH18TKFUh38RXapW5afccPr5LQLxYNiw0ooJjQN4V+VOitOAzWtd4x/eML16l6TXkeedzapDqppYLxdEaPXmyeGHjeI1UDPb+QJBANfrDWe7yQ9GmQOymmozY31bBQASrOGG1sTYYdN+/Ba0jY4zRfbYRkJ77DlDjXBsLo9xoA/gngFXX2CXh7UOnK8CQQDLAkoz/gpavf3VAYF/uuxcDOY//jRaAIFgaryjIzVlFp7LY7V8iwNX8TTPWvvMqpHATboeg6DVcfyaxPzsWfn1AkEAtxS1zympeGxyPnJpAHgGejp9aOxs7uY4obygZoccFdyO0u6i+oW0PZd6W6vt+E+iwzqjcBMTpyuA0hRqm5mCPQJAFHG+l03WLR1FGtZz/DEO7JY/+eHX09iJLvSQ2r0I+40zoLgB5vD4/TpFXzyCbzIeS4eIXtpSsCwyjEOaVRMaoQJBANLaLCW2ZVsrWtvItVtm/7YKQO3Wt8ga2j1JW0iWdlWdQTivoe5YiW785M2dYZ0ZUHWXkqS/VKrZDVXAxDhuqHU=
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000

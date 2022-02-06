@@ -1,6 +1,9 @@
 package com.tplentiful.integrate;
 
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.asymmetric.RSA;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
+import java.util.List;
 
 @Slf4j
 @SpringBootTest
@@ -37,13 +41,13 @@ class IntegrateApplicationTests {
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.tplentiful") // 设置父包名
-                            .moduleName(database) // 设置父包模块名
+                            .moduleName(database.substring(2)) // 设置父包模块名
                             .entity("pojo.po")
                             .mapper("dao")
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\seckill\\" + database + "\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("resource"); // 设置需要生成的表名
+                    builder.addInclude("email_suffix"); // 设置需要生成的表名
                     builder.controllerBuilder().enableRestStyle();
                     builder.mapperBuilder().formatMapperFileName("%sDao");
                     builder.serviceBuilder().formatServiceFileName("%sService").formatServiceImplFileName("%sServiceImpl");
@@ -54,5 +58,8 @@ class IntegrateApplicationTests {
 
     @Test
     public void testUpload() {
+        List<String> strings = JSON.parseObject("[https://tplentiful.bio/resource/asdc/logo_a7a65dcb72c74d91938a7ff13adffc2a.png, https://tplentiful.bio/resource/asdc/logo1_ad7ec5b951094eb2bf638e8e74141b8c.png, https://tplentiful.bio/resource/asdc/微信图片_20210612180730_副本_6bcecc5192b946139271f9d39af45269.jpg, https://tplentiful.bio/resource/asdc/logo_983ad4e954904679a8710d6077dac81d.png, https://tplentiful.bio/resource/asdc/logo1_2c998420e87c488ba3e96877a87ec5aa.png]", new TypeReference<List<String>>() {
+        });
+        log.info("结果: {}", strings);
     }
 }

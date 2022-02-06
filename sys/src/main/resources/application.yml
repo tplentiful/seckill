@@ -1,0 +1,41 @@
+server:
+  port: 30003
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.5.129:3306/t_sys
+    username: seckill
+    password: U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m
+  cloud:
+    nacos:
+      discovery:
+        namespace: seckill
+        group: dev
+        server-addr: ${spring.cloud.nacos.server-addr}
+  redis:
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 6
+        max-wait: 30
+        max-active: 8
+    host: 47.96.5.71
+    port: 9736
+    password: tplentiful
+
+swagger:
+  enable: true
+  application-version: 1.0.0
+  application-desc: 系统服务
+  application-name: ${spring.application.name}
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+
+

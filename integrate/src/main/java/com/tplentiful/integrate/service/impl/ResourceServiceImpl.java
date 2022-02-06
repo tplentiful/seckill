@@ -34,8 +34,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -64,9 +66,13 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceDao, Resource> impl
         String ip = validToken(model.getToken());
         List<String> urls = model.getUrls();
         // 记录存库
+        StringJoiner urlStringJoiner = new StringJoiner(": ");
+        for (String url : urls) {
+            urlStringJoiner.add(url);
+        }
         Resource resource = new Resource();
         resource.setIp(ip);
-        resource.setUrls(urls.toString());
+        resource.setUrls(urlStringJoiner.toString());
         resource.setMethod(1);
         resource.setCreateAt(new Date());
         save(resource);
@@ -123,9 +129,14 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceDao, Resource> impl
         UploadResourceDto uploadResourceDto = new UploadResourceDto();
         uploadResourceDto.setMsg("total: " + model.getFiles().length + ", success: " + successRes.size() + ", fail: " + errorList.size());
         uploadResourceDto.setUploadResourceItems(successRes);
+
+        StringJoiner urlStringJoiner = new StringJoiner(": ");
+        for (UploadResourceDto.UploadResourceItem successRe : successRes) {
+            urlStringJoiner.add(successRe.getUrl());
+        }
         Resource resource = new Resource();
         resource.setIp(ip);
-        resource.setUrls(successRes.stream().map(UploadResourceDto.UploadResourceItem::getUrl).collect(Collectors.toList()).toString());
+        resource.setUrls(urlStringJoiner.toString());
         resource.setMethod(2);
         resource.setCreateAt(new Date());
         save(resource);
@@ -145,6 +156,22 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceDao, Resource> impl
             wrapper.eq("ip", key);
         }
         return page(new Page<>(model.getPage(), model.getLimit()), wrapper);
+    }
+
+    @Override
+    public void deleteAndRelease(Long[] ids) {
+        try {
+            List<Long> delIds = Arrays.asList(ids);
+            List<Resource> delResources = list(new QueryWrapper<Resource>().in("id", delIds));
+            List<String> urls = delResources.stream().map(Resource::getUrls).collect(Collectors.toList());
+            FtpUtil.delete(urls);
+            removeBatchByIds(delIds);
+        } catch (BizException e) {
+            throw new BizException(e.getMessage());
+        } catch (Exception e) {
+            log.error("文件删除失败", e);
+            throw new BizException("文件删除失败: " + Arrays.toString(ids));
+        }
     }
 
 

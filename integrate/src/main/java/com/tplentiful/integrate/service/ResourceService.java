@@ -23,4 +23,6 @@ public interface ResourceService extends IService<Resource> {
     UploadResourceDto uploadResource(UploadResourceModel model);
 
     IPage<Resource> selectPage(ResourceModel model);
+
+    void deleteAndRelease(Long[] ids);
 }

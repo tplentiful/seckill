@@ -1,6 +1,9 @@
 package com.tplentiful.commodity;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.tplentiful.commodity.pojo.dto.CategoryDto;
@@ -14,9 +17,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * @Author: tplentiful
@@ -84,9 +88,42 @@ public class CommodityApplicationTest {
         }
         for (Long key : res.keySet()) {
             CategoryDto categoryDto = res.get(key);
-            categoryDto.setChildren( secondMap.get(key));
+            categoryDto.setChildren(secondMap.get(key));
         }
 
+    }
+
+    @Test
+    public void modCategorySort() {
+        List<Category> firstList = categoryService.list(new QueryWrapper<Category>().eq("grade", 1));
+        for (Category firstCategory : firstList) {
+            Long parentId = firstCategory.getId();
+            List<Category> secondList = categoryService.list(new QueryWrapper<Category>().eq("parent_id", parentId));
+            for (Category secondCategory : secondList) {
+                Long secondParentId = secondCategory.getId();
+                List<Category> thirdList = categoryService.list(new QueryWrapper<Category>().eq("parent_id", secondParentId));
+                AtomicInteger thirdSort = new AtomicInteger();
+                categoryService.updateBatchById(thirdList.stream().peek(o -> {
+                    o.setSort(thirdSort.incrementAndGet());
+                }).collect(Collectors.toList()));
+            }
+            AtomicInteger secondSort = new AtomicInteger();
+            categoryService.updateBatchById(secondList.stream().peek(o -> {
+                o.setSort(secondSort.incrementAndGet());
+            }).collect(Collectors.toList()));
+        }
+        AtomicInteger firstSort = new AtomicInteger();
+        categoryService.updateBatchById(firstList.stream().peek(o -> {
+            o.setSort(firstSort.incrementAndGet());
+        }).collect(Collectors.toList()));
+    }
+
+
+    @Test
+    public void testJsonParseObject() {
+        Map<Long, CategoryDto> longCategoryDtoMap = JSON.parseObject("", new TypeReference<Map<Long, CategoryDto>>() {
+        });
+        log.info("{}", longCategoryDtoMap);
     }
 }
 

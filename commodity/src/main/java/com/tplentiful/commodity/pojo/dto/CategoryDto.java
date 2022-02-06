@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -25,6 +26,12 @@ public class CategoryDto {
 
     @ApiModelProperty("分类名称")
     private String cname;
+
+    @ApiModelProperty("层级")
+    private Integer grade;
+
+    @ApiModelProperty("父级Id")
+    private Long parentId;
 
     @ApiModelProperty("下级目录")
     private List<CategoryDto> children;
