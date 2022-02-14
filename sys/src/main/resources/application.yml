@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.5.129:3306/t_sys
-    username: seckill
-    password: U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m
+    url: jdbc:mysql://192.168.5.131:3306/t_sys
+    username: tplentiful
+    password: $2b$10$caERe8c.QTSn1hCblawQjeXYoulEjAu/SPZDbwmOr7U9Nz1p.2Ev.
   cloud:
     nacos:
       discovery:
@@ -22,6 +22,9 @@ spring:
     host: 47.96.5.71
     port: 9736
     password: tplentiful
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 swagger:
   enable: true
@@ -37,5 +40,16 @@ feign:
       default:
         connectTimeout: 10000
         readTimeout: 10000
+# spring security oauth2
+alipay:
+  app-id: 2021000117673138
+  server-url: https://openapi.alipaydev.com/gateway.do
+  charset: UTF-8
+  sign-type: RSA2
+  format: json
+  private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDWHgmYsBWepLP7JbeQHVTVEFmdEZGAa3GFhOEZ8t7CCulPelNuS4HQjZlnlYBKfJI5X4GCbv/2fYb5gTsBrcGJ+1o8Wjxhn2A+uSpswkLjnYZq3TvP5Hy8mFXyoCiQ7n3y5gFoaWT14Rub7WAqaVNj6LzETLZtnRkdiNXTAxFmnE8PKHBogThhKQvF83LQ1ahX2KS0EJRM5Dy8rSWh6bCGb6Jgx7rfJEaZw+eIjRo26B3T3QeWUahxS6zr3keWL1xHUtHqPZSM+Or/Dchl3gdwEgKlZky2L//Ob/YJya6+xQItQqFzgqQg5hHyk8Ndh29HV3cHKKpmXbuS7tnESFfbAgMBAAECggEBAIvtc14KbQaRImHVw0F2ObNIDRhdm9Xt4XFdZnI7yyHKWbCsA4wH4l01vHP6Oq3y/Ohrpspj2fjvDd9Oeg5dzCZtUgow+lbd/drfzX7n8SipEGgUDnuNGYtyjnCSBBC7Gyo6796ZSfZ51z4ugfMVg/694WbzryCxUvF/NCXDUoLYH2PiDIUE4YSazJoVjMGA3eHcr9abQzRsIs3MvjrVO+/DKHCiSieoTxMlcFJbXZtlw1/1Le0dghfZXm7NTgjf3xv/QQzuV4IZ/WOeP5sIpfZ/OZ8OMis4sgP5GoN8QoVRa2OOpNiifQgibW4Oo4PcdWIBBC6Oqs9TP7zGizZmX0kCgYEA9YO9PMMNYrO8LF7ER20GWT2wU8WuFYPMHTiZwTtMAcxNwbv2pnVmYdsKtVd10+6Mb7Cr5YJv/0f3rkkmlF6godmMvkiZ0slHLjfqjUU7u4b7QEhUmlA58M5hiNIgoMmvfQwsLjGjh5fdYMSdPsKoe/hmiUCNTknz/RJxVbmNg9cCgYEA30MGitSG56d1RPy9hluCeBJp3VLCn2Y6dINOsUDD4nLE75gcVa3WgOXuYQA6i+tLxSbOCvY7T/wNt+ZT8lLnb9PSQIgN/nqQxp/w4JB5Ekbjjq0wfACzhLHFgEyeNKyxn7XTWmPnbw24agX7DSJvbma45Zn5wB9dj+cvE4hFy50CgYEA0tjnvPYaWcjX8xcT4+96w0taUidz4OBGfFXunedp2CV4JchiBATQ/3sZEDHjbDXy/7yvc7R4sLlCubfy3PsDYtwtpgE9savQaJ323oo1yVAcGNHFbp01lVv4oYMsKEntXywECUvyD/HZWlCgZpTQE19516fLcw/J7W5YTPHE2hMCgYAcXSGJpbJ137pwR0O0vA95Pa2hZpA/O/eVMdFfh4DbVgVbAxImeG1V9uAwBp1phT0dEO8ASYQDh1wezu4/TPUGKfz+IcrVV7Do6wzpGrGm9saWK76LInOsGgGjaRh4TLBMQAdX5nVSkIWrQpNAee16MyauVL97/wAd9hru+lMTqQKBgHUoJAeCUBe4XC/jlpJkNe4JtVB8SFH4XBRnx8r7U4f5JhDdjUX9kMcJDrR5to+d23kUXN93kSITJrxITf8FJcT9f5HXBi8R/Ajv0DEVjR29J3TBHazLy0zrHxBSq6KA5o+WUccbjVcNB3NC1dAhDrt6Vp9rEU+K48QluNrc4Vjh
+  alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwUdrhrKNSfNRV+mqnHdIBCRSpKl0Bxs+Yp+VkfcUI93YK0jDsyb80KEsTKm6RXHZ8BYF5sbu+lfF2NxWwbLemenlZPr20IXDTWgIcm/IA4b0m9Aw+5VHVxnTJ/YyqLj+WOJZ/dHo5bPNvAR934PQvHGQlyaCV5GVdju4qye9okDzv9LhOW/SDcKZjDT99LWgzdcgavDGKRHm77U14njRBtdyXdahHfOjyEpOf0XBfvAkht9CrZLT8a+id2tkcZ6F3DOdVqF2GbiHl3gUhH4tqfURNATroD/VAz/3YC1xDg6Qox+5yvXpIsS9nIq0eAQhtP7qC1r2lAW1d0la11jkzwIDAQAB
+  return-url: https://www.baidu.com
+
 
 

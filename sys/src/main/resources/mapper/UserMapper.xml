@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tplentiful.sys.dao.UserDao">
+    <update id="restPassword">
+        update user
+        set passwd = #{passwd},
+            salt=#{salt}
+        where email = #{email}
+    </update>
 
     <select id="getRolesByEmail" resultType="com.tplentiful.sys.pojo.po.Role">
         SELECT r.id,
@@ -12,14 +18,11 @@
     </select>
 
     <select id="getPermsByEmail" resultType="com.tplentiful.sys.pojo.po.Perm">
-        SELECT DISTINCT
-            ( p.`name` )
-        FROM
-            user u
-                JOIN user_role ur ON u.id = ur.user_id
-                JOIN role_perm rp ON ur.role_id = rp.role_id
-                JOIN perm p ON rp.perm_id = p.id
-        WHERE
-            u.email = #{email}
+        SELECT DISTINCT (p.`name`)
+        FROM user u
+                 JOIN user_role ur ON u.id = ur.user_id
+                 JOIN role_perm rp ON ur.role_id = rp.role_id
+                 JOIN perm p ON rp.perm_id = p.id
+        WHERE u.email = #{email}
     </select>
 </mapper>

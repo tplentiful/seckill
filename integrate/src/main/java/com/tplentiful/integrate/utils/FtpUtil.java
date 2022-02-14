@@ -2,9 +2,9 @@ package com.tplentiful.integrate.utils;
 
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.util.IdUtil;
+import com.tplentiful.common.constant.StringConstant;
 import com.tplentiful.common.utils.BizException;
 import com.tplentiful.common.utils.TpFileUtil;
-import com.tplentiful.integrate.constant.StringConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -76,7 +76,7 @@ public class FtpUtil {
             FTPClient client = createClient();
             for (String sourceUrl : urls) {
                 sourceUrl = sourceUrl.replace(TpFileUtil.DOMAIN, TpFileUtil.HOME_PATH);
-                String[] urlList = sourceUrl.split(StringConstant.URL_SEP);
+                String[] urlList = sourceUrl.split(StringConstant.STRING_SPLIT);
                 if (urlList.length == 0) {
                     continue;
                 }

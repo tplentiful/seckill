@@ -27,7 +27,7 @@ public class TpUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 这里的 username 就是 email 不存在 username
-        User user = userDao.selectOne(new QueryWrapper<User>().eq("email", username));
+        User user = userDao.selectOne(new QueryWrapper<User>().eq("email", username))   ;
         if (user == null) {
             throw new UsernameNotFoundException("当前用户不存在，请您注册!");
         }

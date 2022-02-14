@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.tplentiful.common.utils.BizException;
 import com.tplentiful.common.utils.TR;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,16 +19,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class AdviseController {
 
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public TR<JSONObject> ArgumentError(MethodArgumentNotValidException e) {
+    @ExceptionHandler({BindException.class, MethodArgumentNotValidException.class })
+    public TR<JSONObject> ArgumentError(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         JSONObject errorInfo = new JSONObject();
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
             errorInfo.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
         log.error("方法参数异常: {}", e.getMessage());
-        return TR.fail("参数错误", errorInfo);
+        return TR.paramsFail("参数错误", errorInfo);
     }
 
     @ExceptionHandler(BizException.class)

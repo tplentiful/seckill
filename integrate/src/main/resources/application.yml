@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.5.129:3306/t_integrate
-    username: seckill
-    password: U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m
+    url: jdbc:mysql://192.168.5.131:3306/t_integrate
+    username: tplentiful
+    password: $2b$10$caERe8c.QTSn1hCblawQjeXYoulEjAu/SPZDbwmOr7U9Nz1p.2Ev.
   redis:
     lettuce:
       pool:
@@ -58,12 +58,33 @@ mybatis-plus:
   type-aliases-package: com.tplentiful.integrate.pojo.po
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-source-rsa:
-  pubKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrOVINKK+BpfUQuKcsSukyEKXNCJCUl39dRabeXMoGuvzyGwbs+pETP1tDPHM+XVMHg42le5DDsfqObHLXoWS4x5nSHZ0Jy/BGJrpkMD9CGWSx6q6JVkf9oAHFAuW2i/ZBxTYeh7+R0dk5nRHtX99tzmX/gMz5miPziabFSjkqewIDAQAB
-  priKey: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKs5Ug0or4Gl9RC4pyxK6TIQpc0IkJSXf11Fpt5cyga6/PIbBuz6kRM/W0M8cz5dUweDjaV7kMOx+o5sctehZLjHmdIdnQnL8EYmumQwP0IZZLHqrolWR/2gAcUC5baL9kHFNh6Hv5HR2TmdEe1f323OZf+AzPmaI/OJpsVKOSp7AgMBAAECgYB+8e+IfAqrN6ya6hxfdWaxTLBwdBIlaLDwKSzPncHW/Zl9slYPKrKWr5ltHwteSHi/kGRbNWKeBH18TKFUh38RXapW5afccPr5LQLxYNiw0ooJjQN4V+VOitOAzWtd4x/eML16l6TXkeedzapDqppYLxdEaPXmyeGHjeI1UDPb+QJBANfrDWe7yQ9GmQOymmozY31bBQASrOGG1sTYYdN+/Ba0jY4zRfbYRkJ77DlDjXBsLo9xoA/gngFXX2CXh7UOnK8CQQDLAkoz/gpavf3VAYF/uuxcDOY//jRaAIFgaryjIzVlFp7LY7V8iwNX8TTPWvvMqpHATboeg6DVcfyaxPzsWfn1AkEAtxS1zympeGxyPnJpAHgGejp9aOxs7uY4obygZoccFdyO0u6i+oW0PZd6W6vt+E+iwzqjcBMTpyuA0hRqm5mCPQJAFHG+l03WLR1FGtZz/DEO7JY/+eHX09iJLvSQ2r0I+40zoLgB5vD4/TpFXzyCbzIeS4eIXtpSsCwyjEOaVRMaoQJBANLaLCW2ZVsrWtvItVtm/7YKQO3Wt8ga2j1JW0iWdlWdQTivoe5YiW785M2dYZ0ZUHWXkqS/VKrZDVXAxDhuqHU=
 feign:
   client:
     config:
       default:
         connectTimeout: 10000
         readTimeout: 10000
+# -------------------------- 自定义字段 -------------------------
+source-rsa:
+  pubKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrOVINKK+BpfUQuKcsSukyEKXNCJCUl39dRabeXMoGuvzyGwbs+pETP1tDPHM+XVMHg42le5DDsfqObHLXoWS4x5nSHZ0Jy/BGJrpkMD9CGWSx6q6JVkf9oAHFAuW2i/ZBxTYeh7+R0dk5nRHtX99tzmX/gMz5miPziabFSjkqewIDAQAB
+  priKey: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKs5Ug0or4Gl9RC4pyxK6TIQpc0IkJSXf11Fpt5cyga6/PIbBuz6kRM/W0M8cz5dUweDjaV7kMOx+o5sctehZLjHmdIdnQnL8EYmumQwP0IZZLHqrolWR/2gAcUC5baL9kHFNh6Hv5HR2TmdEe1f323OZf+AzPmaI/OJpsVKOSp7AgMBAAECgYB+8e+IfAqrN6ya6hxfdWaxTLBwdBIlaLDwKSzPncHW/Zl9slYPKrKWr5ltHwteSHi/kGRbNWKeBH18TKFUh38RXapW5afccPr5LQLxYNiw0ooJjQN4V+VOitOAzWtd4x/eML16l6TXkeedzapDqppYLxdEaPXmyeGHjeI1UDPb+QJBANfrDWe7yQ9GmQOymmozY31bBQASrOGG1sTYYdN+/Ba0jY4zRfbYRkJ77DlDjXBsLo9xoA/gngFXX2CXh7UOnK8CQQDLAkoz/gpavf3VAYF/uuxcDOY//jRaAIFgaryjIzVlFp7LY7V8iwNX8TTPWvvMqpHATboeg6DVcfyaxPzsWfn1AkEAtxS1zympeGxyPnJpAHgGejp9aOxs7uY4obygZoccFdyO0u6i+oW0PZd6W6vt+E+iwzqjcBMTpyuA0hRqm5mCPQJAFHG+l03WLR1FGtZz/DEO7JY/+eHX09iJLvSQ2r0I+40zoLgB5vD4/TpFXzyCbzIeS4eIXtpSsCwyjEOaVRMaoQJBANLaLCW2ZVsrWtvItVtm/7YKQO3Wt8ga2j1JW0iWdlWdQTivoe5YiW785M2dYZ0ZUHWXkqS/VKrZDVXAxDhuqHU=
+alipay:
+  app-id: 2021000117673138
+  server-url: https://openapi.alipaydev.com/gateway.do
+  charset: UTF-8
+  sign-type: RSA2
+  format: json
+  private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDWHgmYsBWepLP7JbeQHVTVEFmdEZGAa3GFhOEZ8t7CCulPelNuS4HQjZlnlYBKfJI5X4GCbv/2fYb5gTsBrcGJ+1o8Wjxhn2A+uSpswkLjnYZq3TvP5Hy8mFXyoCiQ7n3y5gFoaWT14Rub7WAqaVNj6LzETLZtnRkdiNXTAxFmnE8PKHBogThhKQvF83LQ1ahX2KS0EJRM5Dy8rSWh6bCGb6Jgx7rfJEaZw+eIjRo26B3T3QeWUahxS6zr3keWL1xHUtHqPZSM+Or/Dchl3gdwEgKlZky2L//Ob/YJya6+xQItQqFzgqQg5hHyk8Ndh29HV3cHKKpmXbuS7tnESFfbAgMBAAECggEBAIvtc14KbQaRImHVw0F2ObNIDRhdm9Xt4XFdZnI7yyHKWbCsA4wH4l01vHP6Oq3y/Ohrpspj2fjvDd9Oeg5dzCZtUgow+lbd/drfzX7n8SipEGgUDnuNGYtyjnCSBBC7Gyo6796ZSfZ51z4ugfMVg/694WbzryCxUvF/NCXDUoLYH2PiDIUE4YSazJoVjMGA3eHcr9abQzRsIs3MvjrVO+/DKHCiSieoTxMlcFJbXZtlw1/1Le0dghfZXm7NTgjf3xv/QQzuV4IZ/WOeP5sIpfZ/OZ8OMis4sgP5GoN8QoVRa2OOpNiifQgibW4Oo4PcdWIBBC6Oqs9TP7zGizZmX0kCgYEA9YO9PMMNYrO8LF7ER20GWT2wU8WuFYPMHTiZwTtMAcxNwbv2pnVmYdsKtVd10+6Mb7Cr5YJv/0f3rkkmlF6godmMvkiZ0slHLjfqjUU7u4b7QEhUmlA58M5hiNIgoMmvfQwsLjGjh5fdYMSdPsKoe/hmiUCNTknz/RJxVbmNg9cCgYEA30MGitSG56d1RPy9hluCeBJp3VLCn2Y6dINOsUDD4nLE75gcVa3WgOXuYQA6i+tLxSbOCvY7T/wNt+ZT8lLnb9PSQIgN/nqQxp/w4JB5Ekbjjq0wfACzhLHFgEyeNKyxn7XTWmPnbw24agX7DSJvbma45Zn5wB9dj+cvE4hFy50CgYEA0tjnvPYaWcjX8xcT4+96w0taUidz4OBGfFXunedp2CV4JchiBATQ/3sZEDHjbDXy/7yvc7R4sLlCubfy3PsDYtwtpgE9savQaJ323oo1yVAcGNHFbp01lVv4oYMsKEntXywECUvyD/HZWlCgZpTQE19516fLcw/J7W5YTPHE2hMCgYAcXSGJpbJ137pwR0O0vA95Pa2hZpA/O/eVMdFfh4DbVgVbAxImeG1V9uAwBp1phT0dEO8ASYQDh1wezu4/TPUGKfz+IcrVV7Do6wzpGrGm9saWK76LInOsGgGjaRh4TLBMQAdX5nVSkIWrQpNAee16MyauVL97/wAd9hru+lMTqQKBgHUoJAeCUBe4XC/jlpJkNe4JtVB8SFH4XBRnx8r7U4f5JhDdjUX9kMcJDrR5to+d23kUXN93kSITJrxITf8FJcT9f5HXBi8R/Ajv0DEVjR29J3TBHazLy0zrHxBSq6KA5o+WUccbjVcNB3NC1dAhDrt6Vp9rEU+K48QluNrc4Vjh
+  alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwUdrhrKNSfNRV+mqnHdIBCRSpKl0Bxs+Yp+VkfcUI93YK0jDsyb80KEsTKm6RXHZ8BYF5sbu+lfF2NxWwbLemenlZPr20IXDTWgIcm/IA4b0m9Aw+5VHVxnTJ/YyqLj+WOJZ/dHo5bPNvAR934PQvHGQlyaCV5GVdju4qye9okDzv9LhOW/SDcKZjDT99LWgzdcgavDGKRHm77U14njRBtdyXdahHfOjyEpOf0XBfvAkht9CrZLT8a+id2tkcZ6F3DOdVqF2GbiHl3gUhH4tqfURNATroD/VAz/3YC1xDg6Qox+5yvXpIsS9nIq0eAQhtP7qC1r2lAW1d0la11jkzwIDAQAB
+  return-url: https://www.baidu.com
+qq:
+  auth-url: https://graph.qq.com/oauth2.0/authorize?response_type=%s&client_id=%s&state=%s&display=%s&redirect_uri=%s
+  response-type: code
+  client-id: 101991109
+  client-secret: 3c12c99e191dc30f50ce118e36910ce0
+  display: pc
+  redirect-uri: http://tplentiful.bio/api/integrate/qq/notify
+  fmt: json
+  token-url: https://graph.qq.com/oauth2.0/token?grant_type=%s&client_id=%s&client_secret=%s&code=%s&fmt=%s&redirect_uri=%s
+  open-id-url: https://graph.qq.com/oauth2.0/me?access_token=%s&fmt=%s
+

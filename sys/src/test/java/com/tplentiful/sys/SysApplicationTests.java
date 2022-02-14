@@ -27,7 +27,7 @@ class SysApplicationTests {
     private UserDao userDao;
 
     public static void main(String[] args) {
-        String ss = "12345678!@#$%^";
+        String ss = "tplentiful@!";
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
         log.info("加密后: {}", bCryptPasswordEncoder.encode(ss));;
     }
@@ -40,7 +40,7 @@ class SysApplicationTests {
     public void testPassEncoder() {
         String database = "t_sys";
         String module = database.substring(2);
-        FastAutoGenerator.create("jdbc:mysql://192.168.5.129:3306/" + database, "seckill", "U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m")
+        FastAutoGenerator.create("jdbc:mysql://192.168.5.131:3306/" + database, "tplentiful", "$2b$10$caERe8c.QTSn1hCblawQjeXYoulEjAu/SPZDbwmOr7U9Nz1p.2Ev.")
                 .globalConfig(builder -> {
                     builder.author("tplentiful") // 设置作者
                             .enableSwagger() // 开启 swagger 模式

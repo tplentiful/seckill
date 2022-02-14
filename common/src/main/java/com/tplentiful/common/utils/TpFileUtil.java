@@ -1,7 +1,10 @@
 package com.tplentiful.common.utils;
 
+import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -78,7 +81,7 @@ public class TpFileUtil {
             try {
                 URL requestUrl = new URL(url);
                 URLConnection urlConnection = requestUrl.openConnection();
-                String suffix = urlConnection.getHeaderField("x-oss-meta-file-type");
+                String suffix = FileTypeUtil.getType(urlConnection.getInputStream());
                 log.info("当前文件后缀为: {}", suffix);
                 String filename = IdUtil.simpleUUID();
                 DataInputStream imageStream = new DataInputStream(requestUrl.openStream());

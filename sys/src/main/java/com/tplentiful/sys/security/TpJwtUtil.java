@@ -5,6 +5,7 @@ import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.tplentiful.common.constant.StringConstant;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class TpJwtUtil {
     public static final String PAYLOAD_ROLES = "roles";
     public static final byte[] KEY = "tplentiful".getBytes(StandardCharsets.UTF_8);
     public static final Integer EXPIRES = 6;
+    public static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
 
     public static String create(String username, Collection<? extends GrantedAuthority> authorities) {
         Map<String, Object> map = new HashMap<>();

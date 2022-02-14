@@ -2,7 +2,8 @@ package com.tplentiful.sys.controller;
 
 
 import com.tplentiful.common.utils.TR;
-import com.tplentiful.sys.pojo.model.ForgetUserModel;
+import com.tplentiful.sys.pojo.model.ForgetPasswordValidModel;
+import com.tplentiful.sys.pojo.model.ForgetPasswordModel;
 import com.tplentiful.sys.pojo.po.Perm;
 import com.tplentiful.sys.pojo.po.Role;
 import com.tplentiful.sys.pojo.po.User;
@@ -34,10 +35,16 @@ public class UserController {
 
 
     @PostMapping("/forget")
-    public TR<Void> forget(@RequestBody ForgetUserModel model) {
-        return TR.ok("密码已找回");
+    public TR<Void> forget(@RequestBody ForgetPasswordValidModel model) {
+        userService.validCheckCode(model);
+        return TR.ok("");
     }
 
+    @PostMapping("/restPassword")
+    public TR<Void> resetPassword(@RequestBody ForgetPasswordModel model) {
+        userService.restPassword(model);
+        return TR.ok("请您保管好您的新密码哦！");
+    }
 
 
     @GetMapping("/list/{id}")
@@ -50,15 +57,20 @@ public class UserController {
     @GetMapping("/getByEmail/{email}")
     public TR<User> getOneByEmail(@PathVariable("email") String email) {
         User user = userService.getUserByEmail(email);
-        return TR.ok("用户信息获取成功", user);
+        return TR.ok("", user);
     }
 
     @GetMapping("/getById/{id}")
     public TR<User> getOneById(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
-        return TR.ok("用户信息获取成功", user);
+        return TR.ok("", user);
     }
 
+    @PostMapping("/update")
+    public TR<Void> update(@RequestBody User user) {
+        userService.updateById(user);
+        return TR.ok("用户信息修改成功");
+    }
 
     @GetMapping("/getPermsByEmail/{email}")
     public TR<List<Perm>> getPermsByEmail(@PathVariable("email") String email) {

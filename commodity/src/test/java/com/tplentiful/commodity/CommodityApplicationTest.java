@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,10 +34,51 @@ public class CommodityApplicationTest {
     @Autowired
     private CategoryService categoryService;
 
+    public static void main(String[] args) throws ParseException {
+        // String data = "2019-1-10,,,2019-3-1,2018-7-31,2018-12-5";
+        // SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        // List<Date> dates = new ArrayList<>();
+        // String[] split = data.split(",");
+        // int temp = 0;
+        // for (String s : split) {
+        //     if ("".equals(s)) {
+        //         temp++;
+        //     } else {
+        //         dates.add(sf.parse(s));
+        //     }
+        // }
+        // Calendar instance = Calendar.getInstance();
+        // double tempRate = Math.round((float) temp / (float) split.length * 100);
+        // System.out.println("当前空值占比为: " + tempRate + "%");
+        // StringJoiner sj = new StringJoiner(" ");
+        // dates.stream().map(o -> {
+        //     instance.setTime(o);
+        //     instance.add(Calendar.DAY_OF_MONTH, -90);
+        //     return instance.getTime();
+        // }).sorted((lo, hi) -> lo.equals(hi) ? 0 : lo.after(hi) ? 1 : -1).peek(o -> {
+        //     sj.add(sf.format(o));
+        // }).collect(Collectors.toList());
+        // System.out.println("最后结果为: " + sj);
+        int[] arr = {1,5,8,2,3,9,4};
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    arr[j] ^= arr[j + 1];
+                    arr[j + 1] ^= arr[j];
+                    arr[j] ^= arr[j + 1];
+                }
+            }
+        }
+        System.out.println("从小到大排序后的结果是:");
+        for (int i = 0; i < arr.length; i++)
+            System.out.print(arr[i] + " ");
+    }
+
+
     @Test
     void testGenerateCode() {
-        String database = "com";
-        FastAutoGenerator.create("jdbc:mysql://192.168.5.129:3306/" + database, "seckill", "U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m")
+        String database = "t_commodity";
+        FastAutoGenerator.create("jdbc:mysql://192.168.5.131:3306/" + database, "tplentiful", "$2b$10$caERe8c.QTSn1hCblawQjeXYoulEjAu/SPZDbwmOr7U9Nz1p.2Ev.")
                 .globalConfig(builder -> {
                     builder.author("tplentiful") // 设置作者
                             .enableSwagger() // 开启 swagger 模式

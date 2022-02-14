@@ -30,6 +30,9 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    @ApiModelProperty("用户头像")
+    private String avatar;
+
     @ApiModelProperty("后台管理用户名")
     private String name;
 

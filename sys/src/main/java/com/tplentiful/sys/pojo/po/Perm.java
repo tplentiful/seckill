@@ -32,6 +32,9 @@ public class Perm implements Serializable {
     @ApiModelProperty("权限名称")
     private String name;
 
+    @ApiModelProperty("排序字段")
+    private Integer sort;
+
     @ApiModelProperty("创建该权限的用户 ID")
     private Long createId;
 

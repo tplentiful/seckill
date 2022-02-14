@@ -37,6 +37,10 @@ public class TR<T> {
         return new TR<>(ResCode.FAIL.getCode(), msg, data);
     }
 
+    public static <T> TR<T> paramsFail(String msg, T data) {
+        return new TR<>(ResCode.PARAM_FAIL.getCode(), msg, data);
+    }
+
     public static TR<Void> fail(String msg) {
         return new TR<>(ResCode.FAIL.getCode(), msg, null);
     }

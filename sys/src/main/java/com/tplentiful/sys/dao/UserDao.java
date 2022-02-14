@@ -22,4 +22,6 @@ public interface UserDao extends BaseMapper<User> {
     List<Role> getRolesByEmail(String email);
 
     List<Perm> getPermsByEmail(String email);
+
+    void restPassword(User user);
 }

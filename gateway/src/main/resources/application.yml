@@ -1,3 +1,4 @@
+
 server:
   port: 30000
 spring:
@@ -12,19 +13,21 @@ spring:
       - id: integrate_router
         uri: lb://integrate
         predicates:
-        - Path=/integrate/**
+        - Path=/api/integrate/**
         filters:
-        - RewritePath=/integrate/?(?<segment>.*), /$\{segment}
+        - RewritePath=/api/integrate/?(?<segment>.*), /$\{segment}
 
       - id: commodity_router
         uri: lb://commodity
         predicates:
-        - Path=/commodity/**
+        - Path=/api/commodity/**
         filters:
-        - RewritePath=/commodity/?(?<segment>.*), /$\{segment}
+        - RewritePath=/api/commodity/?(?<segment>.*), /$\{segment}
 
       - id: sys_router
         uri: lb://sys
         predicates:
-        - Path=/**
+        - Path=/api/**
+        filters:
+        - RewritePath=/api/?(?<segment>.*), /$\{segment}
 

@@ -43,7 +43,7 @@ public class ResourceController {
 
     @GetMapping("/token")
     public TR<String> getToken(HttpServletRequest request) {
-        return TR.ok("token 获取成功", resourceService.generateToken(request));
+        return TR.ok("", resourceService.generateToken(request));
     }
 
     @PostMapping("/download")

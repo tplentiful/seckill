@@ -1,19 +1,14 @@
-package com.tplentiful;
+package com.tplentiful.integrate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-/**
- * @Author: tplentiful
- * @Since: 1.0
- **/
 @EnableDiscoveryClient
-@SpringBootApplication
-public class CommodityApplication {
+@SpringBootApplication(scanBasePackages = "com.tplentiful")
+public class IntegrateApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CommodityApplication.class, args);
+        SpringApplication.run(IntegrateApplication.class, args);
     }
+
 }
-
-

@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.5.129:3306/t_commodity
-    username: seckill
-    password: U2FsdGVkX1/Hoj4x5seIpg36bGcu6WaeGp7m
+    url: jdbc:mysql://192.168.5.131:3306/t_commodity
+    username: tplentiful
+    password: $2b$10$caERe8c.QTSn1hCblawQjeXYoulEjAu/SPZDbwmOr7U9Nz1p.2Ev.
   cloud:
     nacos:
       discovery:
@@ -22,7 +22,9 @@ spring:
     host: 47.96.5.71
     port: 9736
     password: tplentiful
-
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 swagger:
   enable: true
   application-version: 1.0.0

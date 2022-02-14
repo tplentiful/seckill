@@ -1,6 +1,8 @@
 package com.tplentiful.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tplentiful.sys.pojo.model.ForgetPasswordModel;
+import com.tplentiful.sys.pojo.model.ForgetPasswordValidModel;
 import com.tplentiful.sys.pojo.po.Perm;
 import com.tplentiful.sys.pojo.po.Role;
 import com.tplentiful.sys.pojo.po.User;
@@ -40,4 +42,7 @@ public interface UserService extends IService<User> {
 
     List<User> queryUserById(Long id);
 
+    void validCheckCode(ForgetPasswordValidModel model);
+
+    void restPassword(ForgetPasswordModel model);
 }
