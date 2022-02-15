@@ -11,5 +11,5 @@ import java.util.List;
  **/
 @Data
 public class CategorySaveListModel {
-        private List<CategoryDto> categoryDtos;
+    private List<CategoryDto> categoryDtos;
 }

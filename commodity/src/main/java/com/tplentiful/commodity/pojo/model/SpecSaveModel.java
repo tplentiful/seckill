@@ -16,6 +16,8 @@ public class SpecSaveModel {
     @ApiModelProperty("商品参数名称")
     private String specName;
 
+    private Long cid;
+
     @NotBlank(message = "商品参数单位不能为空")
     @ApiModelProperty("商品参数单位")
     private String unit;

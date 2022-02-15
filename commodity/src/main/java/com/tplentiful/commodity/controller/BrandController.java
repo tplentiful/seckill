@@ -2,6 +2,7 @@ package com.tplentiful.commodity.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.tplentiful.commodity.pojo.dto.CategoryDto;
 import com.tplentiful.commodity.pojo.model.SaveBrandModel;
 import com.tplentiful.commodity.pojo.po.Brand;
 import com.tplentiful.commodity.service.BrandService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -48,6 +51,11 @@ public class BrandController {
     public TR<Void> del(@RequestBody Long[] ids) {
         brandService.deleteBatchById(ids);
         return TR.ok("删除成功");
+    }
+
+    @GetMapping("/getCategories/{id}")
+    public TR<Map<Long, CategoryDto>> getCategories(@PathVariable("id") Long id) {
+        return TR.ok("", brandService.getCategories(id));
     }
 
 }

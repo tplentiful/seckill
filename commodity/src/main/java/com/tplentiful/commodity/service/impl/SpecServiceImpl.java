@@ -44,6 +44,7 @@ public class SpecServiceImpl extends ServiceImpl<SpecDao, Spec> implements SpecS
         Spec spec = new Spec();
         spec.setSpecName(specSaveModel.getSpecName());
         spec.setUnit(specSaveModel.getUnit());
+        spec.setCid(specSaveModel.getCid());
         spec.setSearch(specSaveModel.getSearch());
         save(spec);
     }

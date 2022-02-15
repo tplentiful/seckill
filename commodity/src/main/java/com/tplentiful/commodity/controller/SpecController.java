@@ -53,7 +53,7 @@ public class SpecController {
     }
 
     @PostMapping("/del")
-    public TR<Void> del(Long[] ids) {
+    public TR<Void> del(@RequestBody Long[] ids) {
         specService.removeByIds(Arrays.asList(ids));
         return TR.ok("删除成功");
     }
