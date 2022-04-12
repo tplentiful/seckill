@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
  * @Since: 1.0
  **/
 @Slf4j
-public class TpAuthenticationFailureHandler implements AuthenticationFailureHandler {
+public class TPAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         log.error("认证失败: 返回消息认证错误！", exception);

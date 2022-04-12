@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tplentiful.sys.dao.PermDao">
 
+
+    <select id="getPermsById" resultType="com.tplentiful.sys.pojo.po.Perm">
+        SELECT DISTINCT (p.`name`)
+        FROM user u
+                 JOIN user_role ur ON u.id = ur.user_id
+                 JOIN role_perm rp ON ur.role_id = rp.role_id
+                 JOIN perm p ON rp.perm_id = p.id
+        WHERE u.id = #{id}
+    </select>
 </mapper>

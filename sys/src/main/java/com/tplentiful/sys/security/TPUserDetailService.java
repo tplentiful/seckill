@@ -19,7 +19,7 @@ import java.util.List;
  **/
 @Slf4j
 @Service
-public class TpUserDetailService implements UserDetailsService {
+public class TPUserDetailService implements UserDetailsService {
 
     @Autowired
     private UserDao userDao;
@@ -32,7 +32,8 @@ public class TpUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("当前用户不存在，请您注册!");
         }
         List<Perm> permList = userDao.getPermsByEmail(username);
-        TpUser tpUser = new TpUser();
+        TPUser tpUser = new TPUser();
+        tpUser.setId(user.getId());
         tpUser.setUsername(username);
         tpUser.setSalt(user.getSalt());
         tpUser.setPassword(user.getPasswd());

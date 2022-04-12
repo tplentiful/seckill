@@ -1,29 +1,20 @@
-package com.tplentiful.sys.pojo.po;
+package com.tplentiful.sys.pojo.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
- * <p>
- *
- * </p>
- *
- * @author tplentiful
- * @since 2022-01-31
- */
+ * @Author: tplentiful
+ * @Since: 1.0
+ **/
 @Data
-@ApiModel(value = "Menu对象", description = "")
-public class Menu implements Serializable {
+public class MenuListDto {
 
-    private static final long serialVersionUID = 1L;
-
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty("菜单名称")
@@ -39,22 +30,20 @@ public class Menu implements Serializable {
     private String perms;
 
     @ApiModelProperty("元数据信息")
-    private String meta;
+    private JSONObject meta;
 
     @ApiModelProperty("菜单等级")
     private Integer grade;
 
-    @ApiModelProperty("排序字段")
-    private Integer sort;
-
-    @ApiModelProperty("父菜单 ID")
+    @ApiModelProperty("父菜单 id")
     private Long parentId;
+
+    @ApiModelProperty("子目录")
+    private List<MenuListDto> children;
 
     @ApiModelProperty("更新时间")
     private Date updateAt;
 
     @ApiModelProperty("创建时间")
     private Date createAt;
-
-
 }

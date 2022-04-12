@@ -10,4 +10,6 @@ public class RedisConstant {
     public static final String COMMODITY_CATEGORY = "commodity:category";
     public static final String EMAIL_CODE = "email:code";
     public static final String EMAIL_CODE_COUNT = "email:codeCount";
+    public static final String STATISTICS_LOGIN_COUNT = "statistics:loginCount";
+    public static final String STATISTICS_ONLINE_COUNT = "statistics:onlineCount";
 }

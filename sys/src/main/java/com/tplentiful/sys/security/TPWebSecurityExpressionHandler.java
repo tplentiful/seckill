@@ -19,13 +19,13 @@ import java.util.StringJoiner;
  **/
 @Slf4j
 @Service
-public class TpWebSecurityExpressionHandler extends DefaultWebSecurityExpressionHandler {
+public class TPWebSecurityExpressionHandler extends DefaultWebSecurityExpressionHandler {
 
     private PermDao permDao;
 
     private RoleHierarchy roleHierarchy;
 
-    public TpWebSecurityExpressionHandler(@Autowired PermDao permDao) {
+    public TPWebSecurityExpressionHandler(@Autowired PermDao permDao) {
         log.debug("初始化 TpWebSecurityExpressionHandler");
         this.permDao = permDao;
         this.roleHierarchy = initRoleHierarchy();

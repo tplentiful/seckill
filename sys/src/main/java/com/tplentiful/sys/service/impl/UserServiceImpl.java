@@ -11,7 +11,7 @@ import com.tplentiful.sys.pojo.model.ForgetPasswordValidModel;
 import com.tplentiful.sys.pojo.po.Perm;
 import com.tplentiful.sys.pojo.po.Role;
 import com.tplentiful.sys.pojo.po.User;
-import com.tplentiful.sys.security.TpJwtUtil;
+import com.tplentiful.sys.security.TPJwtUtil;
 import com.tplentiful.sys.service.RoleService;
 import com.tplentiful.sys.service.UserRoleService;
 import com.tplentiful.sys.service.UserService;
@@ -74,7 +74,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     @Override
     public void restPassword(ForgetPasswordModel model) {
         String salt = RandomUtil.randomString(6);
-        String realPassword = TpJwtUtil.bCryptPasswordEncoder.encode(model.getPassword() + salt);
+        String realPassword = TPJwtUtil.bCryptPasswordEncoder.encode(model.getPassword() + salt);
         User user = new User();
         user.setEmail(model.getEmail());
         user.setPasswd(realPassword);

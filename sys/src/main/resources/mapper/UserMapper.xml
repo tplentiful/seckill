@@ -25,4 +25,5 @@
                  JOIN perm p ON rp.perm_id = p.id
         WHERE u.email = #{email}
     </select>
+
 </mapper>

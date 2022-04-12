@@ -3,3 +3,7 @@
 /common/target/
 /integrate/target/
 .idea
+
+# Project exclude paths
+/gateway/target/
+/sys/target/

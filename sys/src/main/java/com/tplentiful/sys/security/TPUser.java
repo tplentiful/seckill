@@ -16,9 +16,9 @@ import java.util.List;
  * @Since: 1.0
  **/
 @Data
-public class TpUser implements UserDetails {
+public class TPUser implements UserDetails {
     private List<GrantedAuthority> authorities;
-
+    private Long id;
     private String password;
     private String username;
     private String salt;

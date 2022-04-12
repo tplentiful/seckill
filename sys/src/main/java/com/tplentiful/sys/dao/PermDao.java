@@ -4,6 +4,8 @@ import com.tplentiful.sys.pojo.po.Perm;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -14,5 +16,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PermDao extends BaseMapper<Perm> {
-
+    List<Perm> getPermsById(Long id);
 }

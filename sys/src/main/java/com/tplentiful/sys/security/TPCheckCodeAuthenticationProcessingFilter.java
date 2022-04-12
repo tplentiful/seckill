@@ -4,6 +4,7 @@ import cn.hutool.core.io.IoUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,18 +23,20 @@ import java.nio.charset.StandardCharsets;
  * @Since: 1.0
  **/
 @Slf4j
-public class TpCheckCodeAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
+public class TPCheckCodeAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
 
     private AuthenticationProvider authenticationProvider;
 
-    public TpCheckCodeAuthenticationProcessingFilter(String defaultFilterProcessesUrl) {
+    private StringRedisTemplate stringRedisTemplate;
+
+    public TPCheckCodeAuthenticationProcessingFilter(String defaultFilterProcessesUrl) {
         super(new AntPathRequestMatcher(defaultFilterProcessesUrl, "POST"));
     }
 
-    public TpCheckCodeAuthenticationProcessingFilter(AuthenticationProvider provider, String defaultFilterProcessesUrl) {
+    public TPCheckCodeAuthenticationProcessingFilter(AuthenticationProvider provider, String defaultFilterProcessesUrl, StringRedisTemplate stringRedisTemplate) {
         super(new AntPathRequestMatcher(defaultFilterProcessesUrl, "POST"));
-        super.setAuthenticationSuccessHandler(new TpAuthenticationSuccessHandler());
-        super.setAuthenticationFailureHandler(new TpAuthenticationFailureHandler());
+        super.setAuthenticationSuccessHandler(new TPAuthenticationSuccessHandler(stringRedisTemplate));
+        super.setAuthenticationFailureHandler(new TPAuthenticationFailureHandler());
         this.authenticationProvider = provider;
     }
 

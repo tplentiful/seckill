@@ -20,24 +20,27 @@ import java.util.StringJoiner;
  * @Author: tplentiful
  * @Since: 1.0
  **/
-public class TpJwtUtil {
+public class TPJwtUtil {
+    public static final String PAYLOAD_ID = "id";
     public static final String PAYLOAD_EMAIL = "email";
     public static final String PAYLOAD_ROLES = "roles";
+    public static final String PAYLOAD_EXP = "exp";
     public static final byte[] KEY = "tplentiful".getBytes(StandardCharsets.UTF_8);
     public static final Integer EXPIRES = 6;
     public static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
 
-    public static String create(String username, Collection<? extends GrantedAuthority> authorities) {
+    public static String create(Long id, String username, Collection<? extends GrantedAuthority> authorities) {
         Map<String, Object> map = new HashMap<>();
         List<String> roles = new ArrayList<>();
         for (GrantedAuthority authority : authorities) {
             roles.add(authority.getAuthority());
         }
+        map.put(PAYLOAD_ID, id);
         map.put(PAYLOAD_ROLES, roles);
         map.put(PAYLOAD_EMAIL, username);
         return JWT.create()
                 .addPayloads(map)
-                .setExpiresAt(DateUtil.offsetHour(new Date(), EXPIRES))
+                .setExpiresAt(DateUtil.offsetHour(DateUtil.date(), EXPIRES))
                 .setKey(KEY).sign();
     }
 

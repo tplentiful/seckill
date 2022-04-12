@@ -11,6 +11,9 @@ import com.tplentiful.commodity.service.SpecService;
 import com.tplentiful.common.utils.PageModel;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -52,6 +55,14 @@ public class SpecServiceImpl extends ServiceImpl<SpecDao, Spec> implements SpecS
     @Override
     public Spec getOneById(Long id) {
         return getById(id);
+    }
+
+    @Override
+    public List<Spec> getAllData(String key, Long cid) {
+        QueryWrapper<Spec> wrapper = new QueryWrapper<>();
+        if (cid != null && cid != 0) wrapper.eq("cid", cid);
+        if (StringUtils.hasText(key)) wrapper.like("spec_name", key);
+        return list(wrapper);
     }
 
 

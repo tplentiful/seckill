@@ -59,7 +59,7 @@ public class CommodityApplicationTest {
         //     sj.add(sf.format(o));
         // }).collect(Collectors.toList());
         // System.out.println("最后结果为: " + sj);
-        int[] arr = {1,5,8,2,3,9,4};
+        int[] arr = {1, 5, 8, 2, 3, 9, 4};
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
@@ -93,7 +93,7 @@ public class CommodityApplicationTest {
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\seckill\\" + database + "\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("attr", "brand", "brand_category", "category", "sku", "spu", "spec"); // 设置需要生成的表名
+                    builder.addInclude("attr_spu"); // 设置需要生成的表名
                     builder.controllerBuilder().enableRestStyle();
                     builder.mapperBuilder().formatMapperFileName("%sDao");
                     builder.serviceBuilder().formatServiceFileName("%sService").formatServiceImplFileName("%sServiceImpl");

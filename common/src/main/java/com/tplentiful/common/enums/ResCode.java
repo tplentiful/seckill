@@ -10,6 +10,7 @@ public enum ResCode {
     OK(0), // 成功
     NO_PASSWD(41), // 密码错误
     NO_USER(42), // 没有这个用户
+    EXP(43), // token 过期
     NO_PERM(45); // 没有权限
 
     private int code;

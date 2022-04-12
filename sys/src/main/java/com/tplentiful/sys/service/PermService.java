@@ -3,6 +3,8 @@ package com.tplentiful.sys.service;
 import com.tplentiful.sys.pojo.po.Perm;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface PermService extends IService<Perm> {
 
+    List<Perm> listPermsById(Long id);
+
+    List<Perm> getPermsById(Long id);
 }

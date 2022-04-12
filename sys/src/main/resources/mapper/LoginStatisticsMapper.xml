@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tplentiful.sys.dao.LoginStatisticsDao">
+
+    <select id="selectDataList" resultType="com.tplentiful.sys.pojo.po.DateList">
+        select min(create_at) as minDate, max(create_at) as maxDate
+        from login_statistics
+    </select>
+</mapper>
